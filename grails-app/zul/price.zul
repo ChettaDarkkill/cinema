@@ -1,0 +1,502 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" ?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+
+<zk xmlns="http://www.zkoss.org/2005/zul"
+    xmlns:h="http://www.w3.org/1999/xhtml"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
+       <style>
+          .bg1{
+             float:left;
+             filter:alpha(opacity=25);
+             -moz-opacity:.25;opacity:.25;
+            }
+
+          .text{
+                font-size:28px;
+               
+                text-shadow: 0 1px 0 #ccc, 
+                       0 2px 0 #c9c9c9,
+                       0 3px 0 #bbb,
+                       0 4px 0 #b9b9b9,
+                       0 5px 0 #aaa,
+                       0 6px 1px rgba(0,0,0,.1),
+                       0 0 5px rgba(0,0,0,.1),
+                       0 1px 3px rgba(0,0,0,.3),
+                       0 3px 5px rgba(0,0,0,.2),
+                       0 5px 10px rgba(0,0,0,.25),
+                       0 10px 10px rgba(0,0,0,.2),
+                       0 20px 20px rgba(0,0,0,.15);
+                background-color: none;
+                background-repeat: no-repeat;
+                background-position: top center;
+                background-attachment: fixed;
+            }
+            .text:hover { 
+                color: #FF8C00; /* โค๊ดสีที่ต้องการให้เปลี่ยน */
+                text-decoration: underline; 
+            }
+            .text:visited {
+                text-decoration:none;
+                color:black;
+        }
+                             
+        .div-a {background:transparent;position:relative;bottom:50px;right:10px;}
+        .underHead{background:transparent;position:relative;bottom:50px;right:0px;}
+        .button {
+           
+            border: none;
+        }
+        .southCon{background:transparent;position:relative;bottom:0px;right:0px;}
+
+    </style>
+    <window apply="cinema.PriceComposer"  style="background-image:url(./images/bg.jpg) ;background-repeat:no-repeat;background-attachment:fixed;">
+    <div id="testid"  style=";"  width="1366px"  height="800px" >
+    <borderlayout width="1366px"  height="100%" style="background-color:transparent;" >
+
+        <west maxsize="600" size="12%" flex="true" border="none" splittable="false" style="background-color:transparent;" >
+            <div id="divWestBig" style="background-color:transparent" >
+               <!-- Insert  Content to West Here -->
+
+            </div>
+        </west>
+
+        <east size="12%" flex="true" border="none" collapsible="false" style="background-color:transparent;">
+            <div id="divEastBig" style="background-color:transparent" >
+               <!--  Insert  Content to East Here -->
+
+            </div>
+        </east>
+
+        <center border="none" style="background-color:transparent;">
+        <borderlayout style="background-color:transparent;" >
+
+        <north maxsize="300" size="100px" splittable="false" collapsible="false" border="none" style="background-color:transparent;" >
+            <borderlayout style="background-color:transparent;">
+                <center border="none" style="background-color:transparent;">
+                    <hbox align="center" height="100px" width="1040px" style="background-color:transparent;">
+                        <div id="divNorthContent" style="background-color:transparent;" >
+                        <vbox align="center" width="1040px" style="background-color:transparent;">  
+                            <hbox align="center" height="100px" width="1040px" style="background-color:transparent;" >
+                                <image src="${z.resource(dir:'images', file:'logo.png')}"/>
+                                    <separator width="10px"/>
+                                <label id="movie"  class="text"  style="color:write ;">ภาพยนต์</label>
+                                    <separator width="40px"/>
+                                <label id="ticket" class="text" style="color:write ;">จองตั๋ว</label>
+                                    <separator width="40px"/>
+                                <label id="deposite" class="text" style="color:write ;">ฝากของ</label>
+                                    <separator width="40px"/>
+                                <label id="maket" class="text" style="color:write ;">ร้านค้า</label>
+                                    <separator width="40px"/>
+                                <label id="finance" class="text" style="color:write ;">การเงิน</label>
+                                    <separator width="40px"/>
+                                <label id="person" class="text" style="color:write ;">พนักงาน</label>
+                            </hbox>
+                        </vbox>
+                        </div>
+                    </hbox>
+                </center>
+            </borderlayout>
+        </north>
+
+        <center border="none" flex="true" style="background-image:url(./images/bgColor.png) ;background-repeat:repeat;" >
+               <hlayout id="hlayCenterBig" spacing="50px" style="background-color:transparent;">
+                    <div id="divConterContentBig" style="background-color:transparent;" >
+                    <vlayout style="background-color:transparent;" >
+                                        
+                        <div id="centerContent" align="center" >
+                            <div id="divShowTimes" width="1040px" height="90%" style="background-color:white;">
+                                <tabbox width="1000px"  height="600px" vflex="true" hflex="true" style="background-color:#f3d491;"> 
+                                   <tabs id="tabs" align="end" style="background-image:url(./images/bg.jpg)">
+                                        <tab id="A" disabled="true" label="คิดเงิน" />
+                                        <tab id="B" label="บันทึกการเงิน" />
+                                        <tab id="C" disabled="true" label="ตั๋วหนัง" />
+                                    </tabs> 
+                                    <tabpanels>
+
+                                        <tabpanel>
+                                            <borderlayout sclass="complex" height="600px">
+                                                <north size="30px" border="0" style="background-color:#f3d491;">
+                        													<hbox>
+                        														<div style="float:right">
+                                                        <label>ชื่อผู้ Login</label>
+                                                        <textbox id="nameBuncee" style="color:blue !important;" disabled="true"/>
+                                                        <label id="today"></label>
+                                                        <button id="logOut" label="ออกจากระบบ"/>
+                                                    </div>
+                        													 </hbox>       
+                                                </north>
+                                                        
+                                                <west width="60%" title="รายการที่เลื่อก" style="background-color:#f3d491;">
+                                                       <vbox>
+                                                            <separator/><separator/><separator/><separator/><separator/>  
+                                                            <hbox>
+                                                              <separator/><separator/><separator/><separator/><separator/>
+                                                              <separator/><separator/><separator/><separator/><separator/>
+                                                              <label style="font-size:20px">ชื่อหนัง</label>
+                                                              <separator/><separator/><separator/><separator/><separator/>
+                                                              <textbox id="moviename1" style="color:blue !important;" disabled="true"/>                                      
+                                                              <separator/><separator/><separator/><separator/><separator/>
+                                                              <label style="font-size:20px">ประเภท</label>
+                                                              <separator/><separator/><separator/>
+                                                              <textbox id="moviename2" style="color:blue !important;" disabled="true"/>                                                        
+                                                            </hbox>
+                                                            <separator/><separator/><separator/> 
+                                                            <hbox>
+                                                              <separator/><separator/><separator/><separator/><separator/>
+                                                              <separator/><separator/><separator/><separator/><separator/>
+                                                              <label style="font-size:20px">สาขา</label>
+                                                              <separator/><separator/><separator/>
+                                                              <separator/><separator/><separator/><separator/><separator/>
+                                                              <textbox id="blanch" style="color:blue !important;" disabled="true"/>                                      
+                                                              <separator/><separator/><separator/><separator/><separator/>
+                                                              <label style="font-size:20px">รอบ</label>
+                                                              <separator/><separator/><separator/><separator/>
+                                                              <separator/><separator/><separator/><separator/><separator/>
+                                                              <textbox id="runt" style="color:blue !important;" disabled="true" width="170px"/>                                                        
+                                                            </hbox>
+                                                            <separator/><separator/><separator/> 
+                                                            <hbox>
+                                                              <separator/><separator/><separator/><separator/><separator/>
+                                                              <separator/><separator/><separator/><separator/><separator/>
+                                                              <label style="font-size:20px">ที่นั่ง</label>
+                                                              <separator/><separator/><separator/><separator/><separator/>
+                                                              <separator/><separator/><separator/><separator/><separator/>
+                                                              <textbox id="seat" style="color:blue !important;" disabled="true"/>                                      
+                                                              <separator/><separator/><separator/><separator/><separator/>
+                                                              <label style="font-size:20px">โรง</label>
+                                                              <separator/><separator/><separator/><separator/><separator/>                                    
+                                                              <separator/><separator/><separator/><separator/><separator/>
+                                                              <textbox id="plant" style="color:blue !important;" disabled="true"/>                                                        
+                                                            </hbox>
+                                                            <separator/><separator/><separator/><separator/> 
+                                                            <hbox>
+                                                              <separator/><separator/><separator/><separator/><separator/>
+                                                              <separator/><separator/><separator/><separator/><separator/>
+                                                              <label style="font-size:20px">รายการโปรโมชั่นที่ได้รับ</label>
+                                                              <separator/><separator/><separator/><separator/><separator/>
+                                                              <textbox id="promotion" style="color:blue !important;" disabled="true"/>                                                       
+                                                            </hbox>
+                                                            <separator/><separator/> 
+                                                            <hbox>
+                                                              <separator/><separator/><separator/><separator/><separator/>
+                                                              <separator/><separator/><separator/><separator/><separator/>
+                                                              <label style="font-size:20px">จำนวนตั๋ว</label>
+                                                              <separator/><separator/><separator/><separator/><separator/>
+                                                              <label id = "bi" style="font-size:20px"></label>
+                                                              <separator/><separator/><separator/><separator/><separator/>
+                                                              <label style="font-size:20px">ใบ</label>                                                       
+                                                            </hbox>
+                                                            <separator/><separator/><separator/>
+                                                            <hbox>
+                                                              <separator/><separator/><separator/><separator/><separator/>
+                                                              <separator/><separator/><separator/><separator/><separator/>
+                                                              <separator/><separator/><separator/><separator/><separator/>
+                                                              <separator/><separator/><separator/><separator/><separator/>
+                                                              <label style="font-size:20px">รวมราคา</label>
+                                                              <separator/><separator/><separator/><separator/><separator/>
+                                                              <textbox id="sum" style="color:blue !important;" disabled="true"/>
+                                                              <separator/><separator/><separator/><separator/><separator/>
+                                                              <label style="font-size:20px">บาท</label>
+                                                            </hbox>
+                                                            <separator/><separator/> 
+                                                            <hbox>
+                                                              <separator/><separator/><separator/><separator/><separator/>
+                                                              <separator/><separator/><separator/><separator/><separator/>
+                                                              <separator/><separator/><separator/><separator/><separator/>
+                                                              <separator/><separator/><separator/><separator/><separator/>
+                                                              <separator/><separator/><separator/><separator/><separator/>
+                                                              <separator/><separator/><separator/><separator/><separator/>
+                                                              <button id="send" label="พิมพ์ตั๋วหนัง"/>
+                                                              <separator/><separator/><separator/><separator/><separator/>
+                                                              <separator/><separator/><separator/><separator/><separator/>
+                                                              <button id="clear" label="ยกเลิก"/>
+                                                            </hbox>
+                                                        </vbox>
+                                                </west>
+                                                        
+                                                <east width="40%" title="โปรโมชั่นที่มีในเดือนนี้" style="background-color:#66FF99;">
+                                                  <vbox>
+                                                   
+                                                    <separator/><separator/>
+                                                    <hbox>
+                                                              <button id="coke"  src="${z.resource(dir:'images',file:'coke.png')}" label="" width="90px" height="100px" />
+                                                             
+                                                              
+                                                    </hbox>
+                                                    <separator/><separator/>
+                                                    <hbox>
+                                                              <button id="hanami"  src="${z.resource(dir:'images',file:'Hanami.png')}" label="" width="90px" height="100px" />
+                                                             
+                                                              
+                                                    </hbox>
+                                                    <separator/><separator/>
+                                                    <hbox>
+                                                              <button id="popcon"  src="${z.resource(dir:'images',file:'popcorn.png')}" label="" width="90px" height="100px" />
+                                                             
+                                                              
+                                                    </hbox>
+                                                    <separator/><separator/>
+                                                    <hbox>
+                                                              <button id="seal"   label="ลด50%จากราคาเต็ม" style="font-size:20px" width="200px" height="100px" />
+                                                             
+                                                              
+                                                    </hbox>
+
+
+                                                  </vbox>               
+                                                </east>
+
+                                            </borderlayout>    
+                                        </tabpanel>
+                                        <tabpanel>
+                                            <borderlayout sclass="complex" height="600px">
+                                                <north size="30px" border="0" style="background-color:#f3d491;">
+                                                  <hbox>
+                                                    <div style="float:right">
+                                                        <label>ชื่อผู้ Login</label>
+                                                        <textbox id="nameBuncee2" style="color:blue !important;" disabled="true"/>
+                                                        <label id="today2"></label>
+                                                        <button id="logOut2" label="ออกจากระบบ"/>
+                                                    </div>
+                                                   </hbox>       
+                                                </north>
+                                                        
+                                                <west width="60%" title="บันทึกการเงิน" style="background-color:#f3d491;">
+                                                  <vbox>
+                                                        <separator/><separator/><separator/>
+                                                        <hbox>                                                                                                                  
+                                                            <grid height="200px">
+                                                                <auxhead>
+                                                                    <auxheader colspan="4" label="ตารางการรับเงิน" />
+                                                                </auxhead>
+                                                                <columns>
+                                                                    <column hflex="3">Movie</column>
+                                                                    <column hflex="3">รอบ</column>
+                                                                    <column hflex="3">โรง</column>
+                                                                    <column hflex="3">ที่นั่ง</column>
+                                                                    <column hflex="3">จำนวนเงิน</column>
+                                                                </columns>
+                                                                <rows sclass="narrow">
+                                                    
+                                                                </rows>
+                                                            </grid>
+                                                        </hbox>
+                                                            <separator/><separator/><separator/>
+                                                        <hbox>
+                                                            <separator/><separator/><separator/><separator/><separator/>
+                                                            <vbox>
+                                                                <label>จำนวนเงินทั้งหมดที่ได้รับ</label>
+                                                                <separator/>
+                                                                <textbox id="IDPnuknanSearch" style="color:blue !important;" disabled="true"/>
+                                                                <separator/>
+                                                        
+                                                            </vbox>
+                                                            <separator/><separator/><separator/><separator/><separator/>
+                                                            <separator/><separator/><separator/><separator/><separator/>
+                                                            <separator/><separator/><separator/><separator/><separator/>
+                                                            <groupbox width="500px" height="200px" title="ข้อมูลผู้รับเงิน">
+                                                                <vbox>
+                                                                    <separator/><separator/>
+                                                                    <hbox>
+                                                                        <separator/><separator/><separator/><separator/><separator/>
+                                                                        <label>ชื่อ</label>
+                                                                        <separator/><separator/><separator/><separator/><separator/>
+                                                                        <separator/><separator/><separator/><separator/><separator/>
+                                                                        <separator/><separator/>
+                                                                        <textbox id="namePanukngan" style="color:blue !important;" disabled="true" width="150px"/>                                                                      
+                                                                    </hbox> 
+                                                                    <separator/><separator/>
+                                                                    <hbox>
+                                                                        <separator/><separator/><separator/><separator/><separator/>
+                                                                        <label>ที่อยู่</label>
+                                                                        <separator/><separator/><separator/><separator/><separator/>
+                                                                        <separator/><separator/><separator/><separator/><separator/>
+                                                                        <textbox id="livePanukngan" style="color:blue !important;" disabled="true" width="350px"/>                                                                      
+                                                                    </hbox>
+                                                                    <separator/><separator/>
+                                                                    <hbox>
+                                                                        <separator/><separator/><separator/><separator/><separator/>
+                                                                        <label>หมายเลขโทรศัพท์</label>
+                                                                        <separator/><separator/><separator/>
+                                                                        <textbox id="telePhPanukngan" style="color:blue !important;" width="150px" disabled="true"/>    
+                                                                    </hbox>
+                                                                    <button id="bun" label="กลับหน้าจองตั๋ว"/>
+                                                                </vbox>
+                                                            </groupbox>
+                                                        </hbox>
+                                                    </vbox>     
+                                                </west>
+                                                        
+                                                <east width="40%" title="หนังใหม่วันนี้" style="background-image:url(./images/ironman.jpg)">
+                                                                                                                                                                                                                          
+                                                </east>
+
+                                            </borderlayout>    
+                                        </tabpanel>
+
+                                        <tabpanel>
+                                            <borderlayout sclass="complex" height="600px">
+                                                <north size="30px" border="0" style="background-color:#f3d491;">
+                                                  <hbox>
+                                                    <div style="float:right">
+                                                        <label>ชื่อผู้ Login</label>
+                                                        <textbox id="nameBuncee3" style="color:blue !important;" disabled="true"/>
+                                                        <label id="today3"></label>
+                                                        <button id="logOut3" label="ออกจากระบบ"/>
+                                                    </div>
+                                                   </hbox>       
+                                                </north>
+                                                        
+                                                <west width="50%" title="ตั๋วหนัง">
+                                                  <hbox>
+                                                    <vbox>
+                                                      <hbox>
+                                                          <label style="font-size:25px">ชำระเงินเรียบร้อยแล้ว</label>
+                                                      </hbox>
+                                                      <separator/><separator/><separator/>
+                                                      <hbox>
+                                                          <label style="font-size:20px">เรื่อง</label>
+                                                          <separator/><separator/><separator/><separator/>
+                                                          <label id = "mov" style="font-size:20px">Ironman 3</label>
+                                                      </hbox>
+                                                      <separator/><separator/>
+                                                      <hbox>
+                                                          <label style="font-size:20px">รอบ</label>
+                                                          <separator/><separator/><separator/><separator/>
+                                                          <label id = "rob" style="font-size:20px">10.11-13.30 น.</label>
+                                                      </hbox>
+                                                      <separator/><separator/>
+                                                      <hbox>
+                                                          <label style="font-size:20px">โรง</label>
+                                                          <separator/><separator/><separator/><separator/>
+                                                          <label id = "rong" style="font-size:20px">B</label>
+                                                      </hbox>
+                                                      <separator/><separator/>
+                                                      <hbox>
+                                                          <label style="font-size:20px">ที่นั่ง</label>
+                                                          <separator/><separator/><separator/><separator/>
+                                                          <label id = "teenung" style="font-size:20px">A13</label>
+                                                      </hbox>
+                                                      <separator/><separator/>
+                                                      <hbox>
+                                                          <label style="font-size:20px">รวมราคา</label>
+                                                          <separator/><separator/><separator/><separator/>
+                                                          <label id = "mony" style="font-size:20px">120</label>
+                                                          <separator/><separator/><separator/><separator/>
+                                                          <label style="font-size:20px">บาท</label>
+                                                      </hbox>
+                                                      <separator/><separator/>
+                                                      <hbox>
+                                                          <label style="font-size:15px">โปรดปิดโทรศัพท์มือถือก่อนเข้าโรงหนัง</label>
+                                                      </hbox>
+                                                      <label style="font-size:15px">IDที่นั่ง </label>
+                                                      <label id ="idsit" style="font-size:15px"></label>
+                                                    </vbox>
+                                                    <vbox>
+                                                      <image src="${z.resource(dir:'images', file:'logo.png')}"/>
+                                                      <separator/><separator/>
+                                                      <label style="font-size:15px">โปรโมชั่นที่ได้รับ</label>
+                                                      <separator/><separator/>
+                                                      <hbox>
+                                                        <image id ="pro1" src="${z.resource(dir:'images', file:'coke.png')}"/>
+                                                        <image id = "pro2" src="${z.resource(dir:'images', file:'Hanami.png')}"/>
+                                                        <image id ="pro3" src="${z.resource(dir:'images', file:'popcorn.png')}"/>
+                                                      </hbox>
+                                                      <separator/><separator/>
+                                                      <hbox>
+                                                              <button id="pro4"   label="ลด50%จากราคาเต็ม" style="font-size:20px" width="200px" height="100px" />     
+                                                    </hbox>
+                                                    </vbox>
+                                                  </hbox>     
+                                                </west>
+                                                        
+                                                <east width="50%" title="หางตั๋ว">
+                                                  <hbox>
+                                                    <vbox>
+                                                      <hbox>
+                                                          <label style="font-size:25px">สำหรับพนักงานเก็บตั๋ว</label>
+                                                      </hbox>
+                                                      <separator/><separator/><separator/>
+                                                      <hbox>
+                                                          <label style="font-size:20px">เรื่อง</label>
+                                                          <separator/><separator/><separator/><separator/>
+                                                          <label id = "mov2" style="font-size:20px">Ironman 3</label>
+                                                      </hbox>
+                                                      <separator/><separator/>
+                                                      <hbox>
+                                                          <label style="font-size:20px">รอบ</label>
+                                                          <separator/><separator/><separator/><separator/>
+                                                          <label id = "rob2" style="font-size:20px">10.11-13.30 น.</label>
+                                                      </hbox>
+                                                      <separator/><separator/>
+                                                      <hbox>
+                                                          <label style="font-size:20px">โรง</label>
+                                                          <separator/><separator/><separator/><separator/>
+                                                          <label id = "rong2" style="font-size:20px">B</label>
+                                                      </hbox>
+                                                      <separator/><separator/>
+                                                      <hbox>
+                                                          <label style="font-size:20px">ที่นั่ง</label>
+                                                          <separator/><separator/><separator/><separator/>
+                                                          <label id = "teenung2" style="font-size:20px">A13</label>
+                                                      </hbox>
+                                                      <separator/><separator/>
+                                                    </vbox>
+                                                    <vbox>
+                                                      <image src="${z.resource(dir:'images', file:'logo.png')}"/>
+                                                      <separator/><separator/>
+                                                      <label style="font-size:15px">โปรโมชั่นที่ได้รับ</label>
+                                                      <separator/><separator/>
+                                                      <hbox>
+                                                        <image id ="pro5" src="${z.resource(dir:'images', file:'coke.png')}"/>
+                                                        <image id = "pro6" src="${z.resource(dir:'images', file:'Hanami.png')}"/>
+                                                        <image id ="pro7" src="${z.resource(dir:'images', file:'popcorn.png')}"/>
+                                                      </hbox>
+                                                      <separator/><separator/>
+                                                      <hbox>
+                                                              <button id="pro8"   label="ลด50%จากราคาเต็ม" style="font-size:20px" width="200px" height="100px" />
+                                                             
+                                                              
+                                                    </hbox>
+                                                      <separator/><separator/><separator/><separator/>
+                                                      <button id="bak" label="กลับหน้าจองต๋ว"/>
+                                                      <button id="bak2" label="ดูบันทึกการเงิน"/>
+                                                    </vbox>
+                                                  </hbox>                                                
+                                                </east>
+
+                                            </borderlayout>    
+                                        </tabpanel>
+
+                                    </tabpanels>
+                                </tabbox>
+                            </div>
+
+                        </div>
+                    </vlayout>
+                    </div>
+               </hlayout>
+        </center>
+
+        <south border="none" flex="true" style="background-color:transparent;" height="100px" >
+            <hlayout id="hlaySouthBig" spacing="50px" style="background-color:transparent;">
+                <div id="divSouthContentBig"  style="background-color:back;" class="southCon">
+                    <vlayout style="background-color:#C68E17;" >
+                        <!-- Insert  Content  South to Here -->
+
+
+                    </vlayout>
+                </div>
+            </hlayout>
+        </south>
+
+        </borderlayout>
+        </center>
+
+    </borderlayout>
+    </div>
+    </window>
+
+</zk>
